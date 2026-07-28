@@ -21,7 +21,7 @@ namespace RP0
         private static readonly GUIContent _gcNewLC = new GUIContent("New LC", "Build a new launch complex to support this vessel, with a margin of 10% to vessel mass and size upgrades.");
         private static readonly GUIContent _gcNoHangar = new GUIContent("Hangar Unavailable", "The Hangar is currently being modified.");
         private static readonly GUIContent _gcSwitchToHangar = new GUIContent("Switch to Hangar", "A Launch Complex is currently selected; this will switch to the Hangar, needed for planes.");
-        private static readonly GUIContent _gcNonmatchingParts = new GUIContent("Toggle Non-Matching Part Highlights", "Red is differing cost. Yellow is differing mass. Blue is differing resources. Purple is no matching part name.");
+        private static readonly GUIContent _gcNonmatchingParts = new GUIContent("Toggle Non-Matching Part Highlights", "Red is differing cost. Yellow is differing mass. Blue is differing resources. Purple is no matching part name. Green is no corresponding part.");
         private static List<string> vesselFailedChecks = new List<string>();
         private static bool _highlightNonmatchingParts = false;
         private static readonly Dictionary<Part, KCTUtilities.PartCompareResult> _highlights = new Dictionary<Part, KCTUtilities.PartCompareResult>();
@@ -498,8 +498,8 @@ namespace RP0
                     _highlights[p] = result;
                 }
             }
-
-            //RenderMergeSection(ship);
+            
+            RenderMergeSection(editedVessel);
         }
 
         private static void RenderBuildRateInputRow(double buildPoints, double rateWithCurEngis)
