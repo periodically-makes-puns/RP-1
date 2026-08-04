@@ -109,7 +109,7 @@ namespace RP0.UI
 
             GUILayout.BeginHorizontal();
             GUILayout.Label("Part Name", BoldLabel, GUILayout.Width(312));
-            GUILayout.Label(new GUIContent("Ind. Effective Cost", "Global effective-cost modifiers are   included."), BoldRightLabel, GUILayout.Width(144));
+            GUILayout.Label(new GUIContent("Ind. Effective Cost", "Global effective-cost modifiers are included."), BoldRightLabel, GUILayout.Width(144));
             GUILayout.EndHorizontal();
 
             _partCostsScroll = GUILayout.BeginScrollView(_partCostsScroll, GUILayout.Height(300), GUILayout.Width(500));
@@ -220,7 +220,7 @@ namespace RP0.UI
                     _singlePart.Add(p);
                     entry.effectiveCost = VesselProject.GetEffectiveCost(_singlePart) * globalMult;
                     List<string> tags = ModuleTagList.GetTags(p);
-                    double thisGlobal = VesselProject.ApplyGlobalCostModifiers(tags, out _);
+                    double thisGlobal = tags == null ? 1 : VesselProject.ApplyGlobalCostModifiers(tags, out _);
                     entry.effectiveCost /= thisGlobal;
 
                     if (tags?.Count > 0)
