@@ -1258,7 +1258,7 @@ namespace RP0
             state.TagEffectiveCosts.Add(holder);
         }
 
-        public double ApplyGlobalCostModifiers()
+        public static double ApplyGlobalCostModifiers(IEnumerable<string> globalTags, out bool humanRated)
         {
             humanRated = false;
             double costMod = 1d;
@@ -1328,7 +1328,7 @@ namespace RP0
         public double UpdateLeaderEffect()
         {
             _modifiedEC = effectiveCost;
-            double globalMult = ApplyGlobalCostModifiers();
+            double globalMult = ApplyGlobalCostModifiers(globalTags, out humanRated);
             foreach (var t in tagEffectiveCosts)
             {
                 double ec = t.ec * Leaders.LeaderUtils.GetPartEffectiveCostEffect(t.tags);
